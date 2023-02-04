@@ -38,7 +38,21 @@ const controller = {
             return res.json(user);
         });
     },
-    //async update(req: Request, res: Response) {}
+    update(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            const { nome, email } = req.body;
+            const updated = yield User_1.default.updateOne({
+                _id: id,
+            }, {
+                $set: {
+                    nome,
+                    email,
+                },
+            });
+            return res.sendStatus(204);
+        });
+    },
     //async delete(req: Request, res: Response) {}
 };
 exports.default = controller;

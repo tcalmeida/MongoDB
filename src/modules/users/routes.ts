@@ -6,5 +6,6 @@ const routes = Router();
 routes.post("/user", controller.create);
 routes.get("/user", controller.findAll);
 routes.get("/user/:id", controller.findOne);
+routes.put("/user/:id", controller.update);
 
 export default routes;
