@@ -31,8 +31,14 @@ const controller = {
             return res.json(users);
         });
     },
-    /* async findOne(req: Request, res: Response) {}
-      async update(req: Request, res: Response) {}
-      async delete(req: Request, res: Response) {} */
+    findOne(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            const user = yield User_1.default.findById(id);
+            return res.json(user);
+        });
+    },
+    //async update(req: Request, res: Response) {}
+    //async delete(req: Request, res: Response) {}
 };
 exports.default = controller;

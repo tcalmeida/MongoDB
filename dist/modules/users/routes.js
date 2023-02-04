@@ -8,4 +8,5 @@ const controller_1 = __importDefault(require("./controller"));
 const routes = (0, express_1.Router)();
 routes.post("/user", controller_1.default.create);
 routes.get("/user", controller_1.default.findAll);
+routes.get("/user/:id", controller_1.default.findOne);
 exports.default = routes;
