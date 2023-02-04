@@ -25,8 +25,13 @@ const controller = {
             return res.status(201).json(newUser);
         });
     },
-    /* async findAll(req: Request, res: Response) {}
-      async findOne(req: Request, res: Response) {}
+    findAll(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const users = yield User_1.default.find();
+            return res.json(users);
+        });
+    },
+    /* async findOne(req: Request, res: Response) {}
       async update(req: Request, res: Response) {}
       async delete(req: Request, res: Response) {} */
 };
