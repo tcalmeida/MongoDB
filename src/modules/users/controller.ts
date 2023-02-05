@@ -43,7 +43,13 @@ const controller = {
 
     return res.sendStatus(204);
   },
-  //async delete(req: Request, res: Response) {}
+  
+  async delete(req: Request, res: Response) {
+    const { id } = req.params;
+    await User.findByIdAndDelete(id)
+
+    return res.sendStatus(204);
+  }
 };
 
 export default controller;

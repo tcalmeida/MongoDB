@@ -53,6 +53,12 @@ const controller = {
             return res.sendStatus(204);
         });
     },
-    //async delete(req: Request, res: Response) {}
+    delete(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            yield User_1.default.findByIdAndDelete(id);
+            return res.sendStatus(204);
+        });
+    }
 };
 exports.default = controller;

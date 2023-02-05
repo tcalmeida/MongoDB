@@ -10,4 +10,5 @@ routes.post("/user", controller_1.default.create);
 routes.get("/user", controller_1.default.findAll);
 routes.get("/user/:id", controller_1.default.findOne);
 routes.put("/user/:id", controller_1.default.update);
+routes.delete("/user/:id", controller_1.default.delete);
 exports.default = routes;
