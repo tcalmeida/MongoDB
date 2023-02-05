@@ -8,33 +8,33 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const models_1 = require("../../models");
+const User_1 = __importDefault(require("../../models/User"));
 const controller = {
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { nome, email, senha, descricao } = req.body;
-            const newUser = yield models_1.User.create({
+            const { nome, email, senha } = req.body;
+            const newUser = yield User_1.default.create({
                 nome,
                 email,
                 senha,
-                descricao,
             });
             return res.status(201).json(newUser);
         });
     },
     findAll(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const users = yield models_1.User.find();
+            const users = yield User_1.default.find();
             return res.json(users);
         });
     },
     findOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const user = yield models_1.User.findOne({
-                _id: id,
-            });
+            const user = yield User_1.default.findById(id);
             return res.json(user);
         });
     },
@@ -42,11 +42,13 @@ const controller = {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             const { nome, email } = req.body;
-            const updated = yield models_1.User.updateOne({
+            const updated = yield User_1.default.updateOne({
                 _id: id,
             }, {
-                nome,
-                email,
+                $set: {
+                    nome,
+                    email,
+                },
             });
             return res.sendStatus(204);
         });
@@ -54,9 +56,9 @@ const controller = {
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield models_1.User.findByIdAndDelete(id);
+            yield User_1.default.findByIdAndDelete(id);
             return res.sendStatus(204);
         });
-    },
+    }
 };
 exports.default = controller;

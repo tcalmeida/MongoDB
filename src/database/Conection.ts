@@ -9,15 +9,10 @@ export default class Connection {
 
   async createConnection() {
     try {
-      await connect(this.db_connection_string)
-      console.info("Database connected")
-
-
-    }catch (error) {
-      console.error(error)
+      await connect(this.db_connection_string);
+      console.info("Database connected");
+    } catch (error) {
+      console.error(error);
     }
-
-
   }
- 
 }
