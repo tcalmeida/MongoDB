@@ -16,14 +16,18 @@ const controller = {
             const { user, conteudo } = req.body;
             const newPost = yield models_1.Post.create({
                 user,
-                conteudo
+                conteudo,
             });
             return res.status(201).json(newPost);
         });
     },
     findAll(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const posts = yield models_1.Post.find().populate("user"); // receive path info of which document will be populate
+            //const posts = await Post.find().populate("user"); // populate: receive info of which document will be populate
+            const posts = yield models_1.Post.find().populate({
+                path: "user",
+                select: "nome",
+            });
             return res.json(posts);
         });
     },

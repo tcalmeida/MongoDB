@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import {Post} from "../../models/";
+import { Post } from "../../models/";
 
 const controller = {
   async create(req: Request, res: Response) {
@@ -7,13 +7,17 @@ const controller = {
 
     const newPost = await Post.create({
       user,
-      conteudo
+      conteudo,
     });
     return res.status(201).json(newPost);
   },
 
   async findAll(req: Request, res: Response) {
-    const posts = await Post.find().populate("user"); // receive path info of which document will be populate
+    //const posts = await Post.find().populate("user"); // populate: receive info of which document will be populate
+    const posts = await Post.find().populate({          // populate especific itens :receive info of which propriety and itens will be populate
+      path: "user",
+      select: "nome",
+    });
 
     return res.json(posts);
   },
