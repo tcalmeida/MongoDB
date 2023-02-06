@@ -3,7 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = require("mongoose");
 //defining the Schema object  that will be stored in the database
 const postSchema = new mongoose_1.Schema({
-    user: { type: mongoose_1.Schema.Types.ObjectId, required: true, ref: "User" },
+    //user: { type: Schema.Types.ObjectId, required: true, ref: "User" },  // ref: to make reference to User model. To populate function works 
+    user: [{ type: mongoose_1.Schema.Types.ObjectId, required: true, ref: "User" }],
     conteudo: { type: String, required: true },
 }, {
     timestamps: true,
