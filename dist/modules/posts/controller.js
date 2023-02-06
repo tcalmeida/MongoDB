@@ -9,25 +9,54 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const models_1 = require("../../models");
+const models_1 = require("../../models/");
 const controller = {
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { user, conteudo } = req.body;
             const newPost = yield models_1.Post.create({
                 user,
-                conteudo,
+                conteudo
             });
             return res.status(201).json(newPost);
         });
     },
     findAll(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const posts = yield models_1.Post.find({
-                user: "507f1f77bcf86cd799439011",
-            });
+            const posts = yield models_1.Post.find().populate("user"); // receive path info of which document will be populate
             return res.json(posts);
         });
     },
+    /* async findOne(req: Request, res: Response) {
+      const { id } = req.params;
+      const post = await Post.findById(id);
+  
+      return res.json(post);
+    },
+  
+    async update(req: Request, res: Response) {
+      const { id } = req.params;
+      const { user, conteudo } = req.body;
+      const updated = await Post.updateOne(
+        {
+          _id: id,
+        },
+        {
+          $set: {
+            user,
+            conteudo
+          },
+        }
+      );
+  
+      return res.sendStatus(204);
+    },
+    
+    async delete(req: Request, res: Response) {
+      const { id } = req.params;
+      await Post.findByIdAndDelete(id)
+  
+      return res.sendStatus(204);
+    } */
 };
 exports.default = controller;
