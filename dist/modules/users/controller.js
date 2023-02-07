@@ -8,16 +8,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const User_1 = __importDefault(require("../../models/User"));
+const models_1 = require("../../models");
 const controller = {
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { nome, email, senha } = req.body;
-            const newUser = yield User_1.default.create({
+            const newUser = yield models_1.User.create({
                 nome,
                 email,
                 senha,
@@ -27,14 +24,14 @@ const controller = {
     },
     findAll(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const users = yield User_1.default.find();
+            const users = yield models_1.User.find();
             return res.json(users);
         });
     },
     findOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const user = yield User_1.default.findById(id);
+            const user = yield models_1.User.findById(id);
             return res.json(user);
         });
     },
@@ -42,7 +39,7 @@ const controller = {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             const { nome, email } = req.body;
-            const updated = yield User_1.default.updateOne({
+            const updated = yield models_1.User.updateOne({
                 _id: id,
             }, {
                 $set: {
@@ -56,7 +53,7 @@ const controller = {
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield User_1.default.findByIdAndDelete(id);
+            yield models_1.User.findByIdAndDelete(id);
             return res.sendStatus(204);
         });
     }
