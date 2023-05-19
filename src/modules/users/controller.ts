@@ -1,14 +1,14 @@
-import { Request, Response } from "express";
-import {User} from "../../models";
+import { Request, Response } from 'express';
+import { User } from '../../models';
 
 const controller = {
   async create(req: Request, res: Response) {
-    const { nome, email, senha } = req.body;
+    const { name, email, password } = req.body;
 
     const newUser = await User.create({
-      nome,
+      name,
       email,
-      senha,
+      password,
     });
     return res.status(201).json(newUser);
   },
@@ -28,14 +28,14 @@ const controller = {
 
   async update(req: Request, res: Response) {
     const { id } = req.params;
-    const { nome, email } = req.body;
+    const { name, email } = req.body;
     const updated = await User.updateOne(
       {
         _id: id,
       },
       {
         $set: {
-          nome,
+          name,
           email,
         },
       }
@@ -43,13 +43,13 @@ const controller = {
 
     return res.sendStatus(204);
   },
-  
+
   async delete(req: Request, res: Response) {
     const { id } = req.params;
-    await User.findByIdAndDelete(id)
+    await User.findByIdAndDelete(id);
 
     return res.sendStatus(204);
-  }
+  },
 };
 
 export default controller;
