@@ -5,8 +5,8 @@ const routes = Router();
 
 routes.post('/post', controller.create);
 routes.get('/', controller.findAll);
-//routes.get("/post/:id", controller.findOne);
-//routes.put("/post/:id", controller.update);
-//routes.delete("/post/:id", controller.delete);
+routes.get("/post/:id", controller.findOne);
+routes.put("/post/:id", controller.update);
+routes.delete("/post/:id", controller.delete);
 
 export default routes;
