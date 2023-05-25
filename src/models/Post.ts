@@ -1,4 +1,4 @@
-import { Schema, model, Types } from "mongoose";
+import { Schema, model, Types } from 'mongoose';
 
 interface IPost {
   user: Types.ObjectId[];
@@ -7,7 +7,7 @@ interface IPost {
 
 const postSchema = new Schema<IPost>(
   {
-    user: [{ type: Schema.Types.ObjectId, required: true, ref: "User" }],
+    user: [{ type: Schema.Types.ObjectId, required: true, ref: 'User' }],
     content: { type: String, required: true },
   },
   {
@@ -15,6 +15,6 @@ const postSchema = new Schema<IPost>(
   }
 );
 
-const Post = model<IPost>("Post", postSchema);
+const Post = model<IPost>('Post', postSchema);
 
 export default Post;
