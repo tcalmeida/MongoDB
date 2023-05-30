@@ -15,7 +15,7 @@ class controller {
     } catch (error) {
       return res.status(400).json({ message: MESSAGE.ERROR.REGISTER.USER });
     }
-  }
+  };
 
   static findAll = async (req: Request, res: Response): Promise<Response> => {
     try {
@@ -24,9 +24,9 @@ class controller {
     } catch (error) {
       return res.status(500).json({ message: MESSAGE.ERROR.SEARCH_DB });
     }
-  }
+  };
 
- static findOne = async (req: Request, res: Response): Promise<Response> => {
+  static findOne = async (req: Request, res: Response): Promise<Response> => {
     try {
       const { id } = req.params;
       const user = await User.findById(id);
@@ -34,7 +34,7 @@ class controller {
     } catch (error) {
       return res.status(500).json({ message: MESSAGE.ERROR.SEARCH_DB });
     }
-  }
+  };
 
   static update = async (req: Request, res: Response): Promise<Response> => {
     try {
@@ -55,7 +55,7 @@ class controller {
     } catch (error) {
       return res.status(500).json({ message: MESSAGE.ERROR.UPDATE_REGISTER });
     }
-  }
+  };
 
   static delete = async (req: Request, res: Response): Promise<Response> => {
     try {
@@ -65,7 +65,7 @@ class controller {
     } catch (error) {
       return res.status(500).json({ message: MESSAGE.ERROR.DELETE });
     }
-  }
+  };
 }
 
 export default controller;
